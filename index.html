@@ -1520,7 +1520,7 @@
       s.loopStart=ls; s.loopEnd=Math.min(ls+LOOP_L, mus.buf.duration);
       var g=ctx.createGain();
       g.gain.setValueAtTime(.0001,ctx.currentTime);
-      g.gain.exponentialRampToValueAtTime(musMuted?0.0001:.55,ctx.currentTime+.8);
+      g.gain.exponentialRampToValueAtTime(musMuted?0.0001:.385,ctx.currentTime+.8);
       s.connect(g); g.connect(ctx.destination);
       s.start(ctx.currentTime,ls);
       mus.src=s; mus.g=g;
@@ -1533,7 +1533,7 @@
     var ctx=mus.ctx, g=mus.g;
     g.gain.cancelScheduledValues(ctx.currentTime);
     g.gain.setValueAtTime(g.gain.value,ctx.currentTime);
-    g.gain.linearRampToValueAtTime(m?0.0001:.55, ctx.currentTime+.35);
+    g.gain.linearRampToValueAtTime(m?0.0001:.385, ctx.currentTime+.35);
   }
   function callaOso(){
     if(!mus.src)return;
