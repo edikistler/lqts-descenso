@@ -65,7 +65,7 @@
   .parada .contenido{position:relative;z-index:2;display:flex;gap:70px;align-items:center;flex-wrap:wrap}
   a[data-ext]{text-decoration:none;color:inherit;display:inline-block}
   .parada .cover{width:min(64vw,330px);flex-shrink:0;border-radius:8px;overflow:hidden;
-    box-shadow:0 40px 90px rgba(0,0,0,.5);transform:rotate(var(--r,-2deg));transition:transform .35s}
+    box-shadow:0 40px 90px rgba(0,0,0,.5);transform:rotate(var(--r,-2deg));transition:transform .35s;cursor:url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2230%22%20height%3D%2230%22%20viewBox%3D%220%200%2030%2030%22%3E%3Cpath%20d%3D%22M17%204c-5%200-9%204-9%209%200%203%201.2%204.6%202.3%206.1%201%201.3%201.7%202.3%201.7%203.9%200%201.6%201.2%203%203%203%201.9%200%203-1.3%203-3.3%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3Cpath%20d%3D%22M17%204c-5%200-9%204-9%209%200%203%201.2%204.6%202.3%206.1%201%201.3%201.7%202.3%201.7%203.9%200%201.6%201.2%203%203%203%201.9%200%203-1.3%203-3.3%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%221.3%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3Cpath%20d%3D%22M17%208.3c-2.7%200-4.7%202.1-4.7%204.7%200%201.6%200.7%202.4%201.3%203.2%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M17%208.3c-2.7%200-4.7%202.1-4.7%204.7%200%201.6%200.7%202.4%201.3%203.2%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%22.8%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E') 15 15, pointer}
   .parada .cover:hover{transform:rotate(0)}
   .parada .cover img{width:100%;height:auto}
   .parada .info{max-width:440px}
@@ -110,7 +110,7 @@
   .op4{animation:puffear2 5.5s ease-out infinite;animation-delay:-0.9s}
   .op5{animation:puffear2 5.5s ease-out infinite;animation-delay:-2.7s}
   .op6{animation:puffear 5.5s ease-out infinite;animation-delay:-4.4s}
-  .portarretrato-oso{position:absolute;left:42.28%;top:31.66%;width:3.84%;cursor:pointer;z-index:2;
+  .portarretrato-oso{position:absolute;left:42.28%;top:40.09%;width:3.84%;cursor:pointer;z-index:2;
     filter:drop-shadow(0 5px 8px rgba(0,0,0,.5));transform:rotate(-4deg);transition:transform .25s}
   @media (hover:hover) and (pointer:fine){
     .portarretrato-oso:hover{transform:rotate(-4deg) scale(1.12)}
@@ -249,6 +249,7 @@
   .plat-btn{display:block;text-align:center;padding:13px 10px;border-radius:100px;border:1.5px solid rgba(255,255,255,.3);
     color:rgba(255,255,255,.88);text-decoration:none;font-weight:600;letter-spacing:.04em;transition:all .2s}
   .plat-btn:hover{border-color:#7FE8C5;color:#7FE8C5;box-shadow:0 0 22px rgba(127,232,197,.25)}
+  a[href*="open.spotify.com/album/"]{cursor:url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2230%22%20height%3D%2230%22%20viewBox%3D%220%200%2030%2030%22%3E%3Cpath%20d%3D%22M17%204c-5%200-9%204-9%209%200%203%201.2%204.6%202.3%206.1%201%201.3%201.7%202.3%201.7%203.9%200%201.6%201.2%203%203%203%201.9%200%203-1.3%203-3.3%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3Cpath%20d%3D%22M17%204c-5%200-9%204-9%209%200%203%201.2%204.6%202.3%206.1%201%201.3%201.7%202.3%201.7%203.9%200%201.6%201.2%203%203%203%201.9%200%203-1.3%203-3.3%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%221.3%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3Cpath%20d%3D%22M17%208.3c-2.7%200-4.7%202.1-4.7%204.7%200%201.6%200.7%202.4%201.3%203.2%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M17%208.3c-2.7%200-4.7%202.1-4.7%204.7%200%201.6%200.7%202.4%201.3%203.2%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%22.8%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E') 15 15, pointer}
   #sonar{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:95;text-align:center}
   #sonar .fila-top{display:flex;gap:8px;justify-content:center}
   #idioma{font-family:'Space Grotesk',sans-serif;font-size:.78rem;letter-spacing:.14em;font-weight:700;
@@ -367,7 +368,7 @@
     border:1px solid rgba(210,245,230,.28);
     box-shadow:inset 0 1px 0 rgba(255,255,255,.18), 0 0 90px rgba(127,232,197,.14), 0 60px 120px rgba(0,0,0,.45)}
   @media(max-width:860px){.claro{padding:64px 30px}}
-  .claro .cover-j{float:right;width:min(36vw,230px);margin:0 0 26px 34px;border-radius:6px;overflow:hidden;box-shadow:0 24px 60px rgba(46,74,50,.35);transform:rotate(2deg)}
+  .claro .cover-j{float:right;width:min(36vw,230px);margin:0 0 26px 34px;border-radius:6px;overflow:hidden;box-shadow:0 24px 60px rgba(46,74,50,.35);transform:rotate(2deg);cursor:url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2230%22%20height%3D%2230%22%20viewBox%3D%220%200%2030%2030%22%3E%3Cpath%20d%3D%22M17%204c-5%200-9%204-9%209%200%203%201.2%204.6%202.3%206.1%201%201.3%201.7%202.3%201.7%203.9%200%201.6%201.2%203%203%203%201.9%200%203-1.3%203-3.3%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3Cpath%20d%3D%22M17%204c-5%200-9%204-9%209%200%203%201.2%204.6%202.3%206.1%201%201.3%201.7%202.3%201.7%203.9%200%201.6%201.2%203%203%203%201.9%200%203-1.3%203-3.3%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%221.3%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3Cpath%20d%3D%22M17%208.3c-2.7%200-4.7%202.1-4.7%204.7%200%201.6%200.7%202.4%201.3%203.2%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M17%208.3c-2.7%200-4.7%202.1-4.7%204.7%200%201.6%200.7%202.4%201.3%203.2%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%22.8%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E') 15 15, pointer}
   .claro .cover-j img{width:100%;height:auto}
   @media(max-width:700px){.claro .cover-j{float:none;margin:0 auto 34px}}
   .claro .intro{font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(210,240,222,.6);margin-bottom:38px}
@@ -1023,12 +1024,12 @@
     <div class="portarretrato-oso" id="galeria-btn">
       <div class="pr-marco"><img data-lazy="epocas/2004.jpg" src="" alt="Galer&iacute;a de fotos"></div>
     </div>
-    <img class="merch-cap" data-z="litografia" data-lazy="cabana/merch-lito.jpg" src="" alt="Litograf&iacute;a" style="left:49.4%;top:16%;width:5.8%;--mr:4.3deg;--sx:-2deg">
-    <img class="merch-cap" data-z="comic" data-lazy="cabana/merch-comic.jpg" src="" alt="F&aacute;bulas del Oso" style="left:24.5%;top:64.4%;width:10.6%;--mr:-3.5deg;--sx:4.5deg">
-    <span class="grabadora-wrap" style="position:absolute;left:18.0%;top:34.17%;width:9.45%;transform:rotate(12.5deg) skewX(5deg);transform-origin:50% 50%;cursor:pointer" id="mute-toggle"><img class="merch-cap grabadora" data-lazy="cabana/merch-grabadora.png" src=""
+    <img class="merch-cap" data-z="litografia" data-lazy="cabana/merch-lito.jpg" src="" alt="Litograf&iacute;a" style="left:49.4%;top:16.94%;width:6.67%;--mr:4.3deg;--sx:-2deg">
+    <img class="merch-cap" data-z="comic" data-lazy="cabana/merch-comic.jpg" src="" alt="F&aacute;bulas del Oso" style="left:24.5%;top:68.15%;width:10.6%;--mr:-3.5deg;--sx:4.5deg">
+    <span class="grabadora-wrap" style="position:absolute;left:18.0%;top:33.42%;width:9.45%;transform:rotate(12.5deg) skewX(5deg);transform-origin:50% 50%;cursor:pointer" id="mute-toggle"><img class="merch-cap grabadora" data-lazy="cabana/merch-grabadora.png" src=""
       alt="Grabadora — toca para silenciar la m&uacute;sica"><span class="led"></span></span>
-    <img class="merch-cap" data-z="vinilos" data-lazy="cabana/merch-vinilo.webp" src="" alt="Vinilo Jard&iacute;n" style="left:4.4%;top:61.8%;width:14.40%;--mr:-9deg">
-    <img class="merch-cap" data-z="playera" data-lazy="cabana/merch-playera.png" src="" alt="Playera Me Lleva" style="left:84.70%;top:28.30%;width:9.6%;--mr:1deg">
+    <img class="merch-cap" data-z="vinilos" data-lazy="cabana/merch-vinilo.webp" src="" alt="Vinilo Jard&iacute;n" style="left:4.4%;top:61.05%;width:14.40%;--mr:-9deg">
+    <img class="merch-cap" data-z="playera" data-lazy="cabana/merch-playera.png" src="" alt="Playera Me Lleva" style="left:85.23%;top:28.30%;width:9.6%;--mr:1deg">
     <img class="merch-cap" data-z="hoodie" data-lazy="cabana/merch-hoodie.png" src="" alt="Hoodie Momo Cha" style="left:82.3%;top:41.3%;width:7.4%;--mr:-2deg">
     <button class="pto" data-z="vinilos" style="left:12%;top:62%"></button>
     <button class="pto" data-z="comic" style="left:29%;top:74%"></button>
@@ -1524,21 +1525,21 @@
     tarjeta.classList.add('ver');
   }
   /* la guitarra del oso: 4 compases en loop sin costura */
-  var mus={ctx:null,buf:null,src:null,g:null,pidiendo:false};
-  var LOOP_L=2.2540; /* segundos exactos del loop */
+  var PISTAS=[{f:'cabana/oso-loop.mp3',L:2.2540},{f:'cabana/oso-loop2.mp3',L:2.2728}];
+  var mus={ctx:null,bufs:[null,null],pidiendo:[false,false],src:null,g:null,next:0};
   function musCtx(){
     mus.ctx=mus.ctx||new (window.AudioContext||window.webkitAudioContext)();
     if(mus.ctx.state==='suspended')mus.ctx.resume();
     return mus.ctx;
   }
-  function cargaMusica(cb){
-    if(mus.buf){cb();return}
-    if(mus.pidiendo)return;
-    mus.pidiendo=true;
-    fetch('cabana/oso-loop.mp3').then(function(r){return r.arrayBuffer()})
+  function cargaMusica(idx,cb){
+    if(mus.bufs[idx]){cb();return}
+    if(mus.pidiendo[idx])return;
+    mus.pidiendo[idx]=true;
+    fetch(PISTAS[idx].f).then(function(r){return r.arrayBuffer()})
       .then(function(ab){return musCtx().decodeAudioData(ab)})
-      .then(function(b){mus.buf=b;mus.pidiendo=false;cb()})
-      .catch(function(e){mus.pidiendo=false;console.error('musica',e)});
+      .then(function(b){mus.bufs[idx]=b;mus.pidiendo[idx]=false;cb()})
+      .catch(function(e){mus.pidiendo[idx]=false;console.error('musica',e)});
   }
   var fuego={ctx:null,t:null,activo:false};
   function crackleFuego(){
@@ -1562,16 +1563,15 @@
   }
   function iniciaFuego(){if(fuego.activo)return;fuego.activo=true;crackleFuego()}
   function detieneFuego(){fuego.activo=false;clearTimeout(fuego.t)}
-  function sonarOso(){
-    cargaMusica(function(){
+  function reproducirIdx(idx){
+    cargaMusica(idx,function(){
       if(mus.src)return;
-      var ctx=musCtx();
-      /* saltar el silencio de cabecera que agrega el codificador */
-      var d=mus.buf.getChannelData(0), i=0;
+      var ctx=musCtx(), buf=mus.bufs[idx];
+      var d=buf.getChannelData(0), i=0;
       while(i<d.length && Math.abs(d[i])<.003)i++;
-      var ls=i/mus.buf.sampleRate;
-      var s=ctx.createBufferSource(); s.buffer=mus.buf; s.loop=true;
-      s.loopStart=ls; s.loopEnd=Math.min(ls+LOOP_L, mus.buf.duration);
+      var ls=i/buf.sampleRate;
+      var s=ctx.createBufferSource(); s.buffer=buf; s.loop=true;
+      s.loopStart=ls; s.loopEnd=Math.min(ls+PISTAS[idx].L, buf.duration);
       var g=ctx.createGain();
       g.gain.setValueAtTime(.0001,ctx.currentTime);
       g.gain.exponentialRampToValueAtTime(musMuted?0.0001:.385,ctx.currentTime+.8);
@@ -1579,6 +1579,11 @@
       s.start(ctx.currentTime,ls);
       mus.src=s; mus.g=g;
     });
+  }
+  function sonarOso(){
+    mus.next=0;
+    reproducirIdx(0);
+    mus.next=1;
   }
   var musMuted=false;
   function toggleMuteOso(m){
@@ -1621,8 +1626,27 @@
   var gw=velo.querySelector('.grabadora-wrap');
   gw.addEventListener('click',function(e){e.stopPropagation();
     var muted=gw.classList.toggle('muteado');
-    toggleMuteOso(muted);
-    if(muted)detieneFuego(); else iniciaFuego();
+    if(muted){
+      toggleMuteOso(true);
+      detieneFuego();
+    } else {
+      musMuted=false;
+      if(mus.src){
+        var viejoSrc=mus.src, viejoG=mus.g, ctx=mus.ctx;
+        mus.src=null; mus.g=null;
+        try{
+          viejoG.gain.cancelScheduledValues(ctx.currentTime);
+          viejoG.gain.setValueAtTime(viejoG.gain.value||.385,ctx.currentTime);
+          viejoG.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+.35);
+          viejoSrc.stop(ctx.currentTime+.4);
+        }catch(err){}
+        setTimeout(function(){reproducirIdx(mus.next);mus.next=1-mus.next;},380);
+      } else {
+        reproducirIdx(mus.next);
+        mus.next=1-mus.next;
+      }
+      iniciaFuego();
+    }
   });
   var gt=null;
   velo.querySelector('.oso-cuerpo').addEventListener('click',function(){
@@ -1709,6 +1733,7 @@
   document.querySelectorAll('a[href*="open.spotify.com/album/"]').forEach(function(a){
     a.addEventListener('click',function(e){
       e.preventDefault();e.stopPropagation();
+      if(window.ticSonido)window.ticSonido();
       var m=a.href.match(/album\/([A-Za-z0-9]+)/);
       abrir(m?m[1]:'',a.href);
     });
@@ -1726,13 +1751,28 @@
 
 /* lightbox para todas las fotos */
 (function(){try{
+  var ticCtx=null;
+  window.ticSonido=function(){
+    try{
+      ticCtx=ticCtx||new (window.AudioContext||window.webkitAudioContext)();
+      if(ticCtx.state==='suspended')ticCtx.resume();
+      var t0=ticCtx.currentTime+.002;
+      var o=ticCtx.createOscillator(), g=ticCtx.createGain();
+      o.type='square'; o.frequency.setValueAtTime(1400,t0);
+      g.gain.setValueAtTime(.0001,t0);
+      g.gain.exponentialRampToValueAtTime(.06,t0+.002);
+      g.gain.exponentialRampToValueAtTime(.0001,t0+.022);
+      o.connect(g); g.connect(ticCtx.destination);
+      o.start(t0); o.stop(t0+.03);
+    }catch(e){}
+  };
   var fv=document.getElementById('foto-velo'), fim=fv.querySelector('img');
   function abrir(src,alt){fim.src=src;fim.alt=alt||'';fv.classList.add('abierto');document.body.style.overflow='hidden'}
   function cerrar(){fv.classList.remove('abierto');document.body.style.overflow=''}
   fv.addEventListener('click',cerrar);
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&fv.classList.contains('abierto'))cerrar()});
   document.querySelectorAll('.fotos .foto img, .foto-epoca img, .premio-real img').forEach(function(im){
-    im.addEventListener('click',function(e){e.stopPropagation();abrir(im.src,im.alt)});
+    im.addEventListener('click',function(e){e.stopPropagation();ticSonido();abrir(im.src,im.alt)});
   });
 }catch(e){console.error('lightbox',e)}})();
 /* burbujas que viajan a la superficie, en loop imperceptible */
