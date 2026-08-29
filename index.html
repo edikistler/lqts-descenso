@@ -1026,7 +1026,7 @@
     </div>
     <img class="merch-cap" data-z="litografia" data-lazy="cabana/merch-lito.jpg" src="" alt="Litograf&iacute;a" style="left:49.4%;top:16.94%;width:6.67%;--mr:4.3deg;--sx:-2deg">
     <img class="merch-cap" data-z="comic" data-lazy="cabana/merch-comic.jpg" src="" alt="F&aacute;bulas del Oso" style="left:24.5%;top:68.15%;width:10.6%;--mr:-3.5deg;--sx:4.5deg">
-    <span class="grabadora-wrap" style="position:absolute;left:18.0%;top:33.42%;width:9.45%;transform:translate(-3.76%,-14.58%) rotate(16.5deg) skewX(5deg);transform-origin:0 100%;cursor:pointer" id="mute-toggle"><img class="merch-cap grabadora" data-lazy="cabana/merch-grabadora.png" src=""
+    <span class="grabadora-wrap" style="position:absolute;left:18.0%;top:32.76%;width:9.45%;transform:translate(-3.76%,-14.58%) rotate(16.5deg) skewX(5deg);transform-origin:0 100%;cursor:pointer" id="mute-toggle"><img class="merch-cap grabadora" data-lazy="cabana/merch-grabadora.png" src=""
       alt="Grabadora — toca para silenciar la m&uacute;sica"><span class="led"></span></span>
     <img class="merch-cap" data-z="vinilos" data-lazy="cabana/merch-vinilo.webp" src="" alt="Vinilo Jard&iacute;n" style="left:4.4%;top:61.05%;width:14.40%;--mr:-9deg">
     <img class="merch-cap" data-z="playera" data-lazy="cabana/merch-playera.png" src="" alt="Playera Me Lleva" style="left:85.23%;top:28.30%;width:9.6%;--mr:1deg">
@@ -1895,21 +1895,25 @@
   paso();
 }catch(e){console.error('burbujas',e)}})();
 
-/* AMBIENTE SUBMARINO · sintetizado en vivo, seamless por naturaleza (cero archivos)
-   Ruido cafe filtrado grave + sub-oscilador 48Hz + LFOs lentos de "respiracion"
-   + burbujas graves esporadicas. Arranca al primer toque/click (politica de
-   autoplay) y se aguada cuando abres la cabana del oso para no pelear con la
+/* AMBIENTE SONORO · sintetizado en vivo, cero archivos.
+   Arriba (superficie): pajaritos aleatorios.
+   Al cruzar hacia la contraportada Deja Vu: sonido de clavado/inmersion +
+   fade-in rapido del ambiente submarino (ruido cafe grave + sub-oscilador
+   + burbujas graves esporadicas + burbujas agudas al mover el mouse rapido).
+   Se aguada el submarino dentro de la cabana del oso para no pelear con la
    grabadora. */
 (function(){try{
-  var actx=null, master=null, lp=null, activo=false, bubT=null;
+  var actx=null, master=null, fx=null, lp=null, activo=false, sumergido=false, bubT=null, pajaroT=null, pajarosOn=true;
   function ctxA(){actx=actx||new (window.AudioContext||window.webkitAudioContext)();
     if(actx.state==='suspended')actx.resume(); return actx;}
+
   function iniciaMar(){
     if(activo)return; activo=true;
     var c=ctxA(), t=c.currentTime;
     master=c.createGain();
     master.gain.setValueAtTime(.0001,t); /* arranca en silencio total */
     master.connect(c.destination);
+    fx=c.createGain(); fx.gain.value=.5; fx.connect(c.destination); /* bus de pajaros/clavado, ajeno al mute del oso */
     /* drone: ruido cafe (integrado) muy filtrado */
     var len=c.sampleRate*4, nb=c.createBuffer(1,len,c.sampleRate), d=nb.getChannelData(0), u=0;
     for(var i=0;i<len;i++){var w=Math.random()*2-1; u=(u+.02*w)/1.02; d[i]=u*3.5;}
@@ -1929,6 +1933,7 @@
     var lg2=c.createGain(); lg2.gain.value=.025;
     lf2.connect(lg2); lg2.connect(sg.gain); lf2.start();
     burbujaGrave();
+    pajarito();
   }
   function burbujaGrave(){
     if(!activo)return;
@@ -1946,6 +1951,33 @@
     }catch(e){}
     bubT=setTimeout(burbujaGrave, 1500+Math.random()*4500);
   }
+  /* pajaritos random en la superficie: se callan al sumergirse */
+  function pajarito(){
+    if(!pajarosOn||sumergido)return;
+    try{
+      var c=actx, t0=c.currentTime+.02;
+      var o=c.createOscillator(); o.type='sine';
+      var base=2400+Math.random()*1800;
+      var pans=Math.random()<.5?-1:1, pan=(.3+Math.random()*.6)*pans;
+      var pn=(c.createStereoPanner)?c.createStereoPanner():null;
+      if(pn)pn.pan.value=pan;
+      /* 2-4 chirridos cortos en trino */
+      var nTr=2+Math.floor(Math.random()*3), tc=t0;
+      var g=c.createGain(); g.gain.setValueAtTime(.0001,t0);
+      o.frequency.setValueAtTime(base,t0);
+      for(var k=0;k<nTr;k++){
+        var f1=base*(1+Math.random()*.35);
+        o.frequency.exponentialRampToValueAtTime(f1,tc+.05);
+        o.frequency.exponentialRampToValueAtTime(base*(.85+Math.random()*.1),tc+.11);
+        g.gain.exponentialRampToValueAtTime(.03+Math.random()*.02,tc+.03);
+        g.gain.exponentialRampToValueAtTime(.0001,tc+.11);
+        tc+=.14+Math.random()*.05;
+      }
+      o.connect(g); if(pn){g.connect(pn); pn.connect(fx);} else {g.connect(fx);}
+      o.start(t0); o.stop(tc+.05);
+    }catch(e){}
+    pajaroT=setTimeout(pajarito, 1800+Math.random()*5200);
+  }
   /* aguadar dentro de la cabana (la grabadora manda ahi) */
   function nivel(v){
     if(!master||!actx)return;
@@ -1962,47 +1994,104 @@
     }).observe(veloOso,{attributes:true,attributeFilter:['class']});
   }
 
-  /* el motor se construye (en silencio) al primer gesto del usuario, ya
-     que WebAudio exige eso para arrancar. El FADE-IN real de volumen no
-     pasa aqui: pasa al cruzar de la portada (superficie) a la
-     contraportada Deja Vu, que es donde la historia entra bajo el agua. */
+  /* el motor se construye al primer gesto del usuario (WebAudio lo exige).
+     Para que el cruce a la contraportada suene AUTOMATICO y no dependa de
+     un click, se intenta arrancar/retomar el audio en el abanico mas amplio
+     posible de gestos, incluido el scroll/wheel, y se reintenta en cada uno
+     hasta que el contexto quede realmente "running". */
   function armaMotor(){
     try{iniciaMar()}catch(e){console.error('mar',e)}
   }
-  ['click','touchstart','keydown','pointerdown'].forEach(function(ev){
-    document.addEventListener(ev,armaMotor,{once:true,passive:true});
+  function intentaArrancar(){
+    armaMotor();
+    if(actx&&actx.state==='suspended')actx.resume();
+    if(actx&&actx.state==='running'){
+      ['click','touchstart','touchend','keydown','pointerdown','wheel','scroll'].forEach(function(ev){
+        document.removeEventListener(ev,intentaArrancar,true);
+      });
+      if(pendienteCruce)cruzarAlAgua();
+    }
+  }
+  ['click','touchstart','touchend','keydown','pointerdown','wheel','scroll'].forEach(function(ev){
+    document.addEventListener(ev,intentaArrancar,{passive:true,capture:true});
   });
 
-  /* cruce superficie -> contraportada: fade-in veloz (~0.6s) del ambiente.
+  /* sonido de clavado/inmersion: impacto sordo + rafaga de burbujeo que sube,
+     como al entrar de golpe al agua */
+  function sonidoClavado(){
+    if(!actx||!fx)return;
+    var c=actx, t0=c.currentTime+.01;
+    /* impacto: golpe grave descendente */
+    var o=c.createOscillator(); o.type='sine';
+    o.frequency.setValueAtTime(260,t0);
+    o.frequency.exponentialRampToValueAtTime(55,t0+.32);
+    var g=c.createGain();
+    g.gain.setValueAtTime(.0001,t0);
+    g.gain.exponentialRampToValueAtTime(.4,t0+.02);
+    g.gain.exponentialRampToValueAtTime(.0001,t0+.42);
+    o.connect(g); g.connect(fx); o.start(t0); o.stop(t0+.45);
+    /* splash: rafaga de ruido agudo-medio que decae rapido */
+    var len=Math.floor(c.sampleRate*.35), nb=c.createBuffer(1,len,c.sampleRate), d=nb.getChannelData(0);
+    for(var i=0;i<len;i++)d[i]=Math.random()*2-1;
+    var src=c.createBufferSource(); src.buffer=nb;
+    var bp=c.createBiquadFilter(); bp.type='bandpass'; bp.Q.value=.9;
+    bp.frequency.setValueAtTime(2200,t0);
+    bp.frequency.exponentialRampToValueAtTime(500,t0+.3);
+    var gs=c.createGain();
+    gs.gain.setValueAtTime(.0001,t0);
+    gs.gain.exponentialRampToValueAtTime(.5,t0+.02);
+    gs.gain.exponentialRampToValueAtTime(.0001,t0+.34);
+    src.connect(bp); bp.connect(gs); gs.connect(fx); src.start(t0); src.stop(t0+.36);
+    /* burbujeo de la inmersion: 4-6 burbujas subiendo de tono, cada vez mas agudas */
+    var nB=4+Math.floor(Math.random()*3), tb=t0+.12;
+    for(var b=0;b<nB;b++){
+      (function(tb,idx,nB){
+        var ob=c.createOscillator(); ob.type='sine';
+        var f0=180+idx*70+Math.random()*40;
+        ob.frequency.setValueAtTime(f0,tb);
+        ob.frequency.exponentialRampToValueAtTime(f0*1.8,tb+.16);
+        var gb=c.createGain();
+        gb.gain.setValueAtTime(.0001,tb);
+        gb.gain.exponentialRampToValueAtTime(.09,tb+.03);
+        gb.gain.exponentialRampToValueAtTime(.0001,tb+.2);
+        ob.connect(gb); gb.connect(fx); ob.start(tb); ob.stop(tb+.22);
+      })(tb,b,nB);
+      tb+=.09+Math.random()*.08;
+    }
+  }
+
+  /* cruce superficie -> contraportada: clavado + fade-in rapido (~0.6s).
      Se dispara una sola vez, la primera vez que #dejavu entra en pantalla. */
-  var cruzado=false;
+  var cruzado=false, pendienteCruce=false;
   function cruzarAlAgua(){
-    if(cruzado)return; cruzado=true;
-    armaMotor();
-    if(!master||!actx){ /* motor aun no listo (sin gesto previo): reintenta */
-      setTimeout(function(){cruzado=false; cruzarAlAgua();},300);
+    if(cruzado)return;
+    if(!master||!actx){ /* motor aun no listo: queda pendiente al proximo gesto */
+      pendienteCruce=true;
       return;
     }
+    cruzado=true; pendienteCruce=false;
+    pajarosOn=false; if(pajaroT)clearTimeout(pajaroT);
+    sonidoClavado();
     var t=actx.currentTime;
     master.gain.cancelScheduledValues(t);
     master.gain.setValueAtTime(Math.max(master.gain.value,.0001),t);
-    master.gain.exponentialRampToValueAtTime(.15,t+.6); /* fade rapido */
+    master.gain.exponentialRampToValueAtTime(.15,t+.6); /* fade rapido, junto con el clavado */
+    setTimeout(function(){sumergido=true;},80); /* las burbujas del mouse arrancan justo tras el clavado */
   }
   var metaDejavu=document.getElementById('dejavu');
   if(metaDejavu&&window.IntersectionObserver){
     var ioMar=new IntersectionObserver(function(entries){
       entries.forEach(function(en){
-        if(en.isIntersecting){cruzarAlAgua(); ioMar.disconnect();}
+        if(en.isIntersecting){armaMotor(); cruzarAlAgua(); ioMar.disconnect();}
       });
     },{threshold:.15});
     ioMar.observe(metaDejavu);
   }
 
-  /* burbujas agudas al mover el mouse rapido: cuanto mas rapido el gesto,
-     mas probable/intenso el "swish" de agua removiendose */
+  /* burbujas agudas al mover el mouse rapido, solo una vez sumergidos */
   var mx=0,my=0,mt=0,burbHiT=0;
   function burbujaAguda(intensidad){
-    if(!activo||!master||!actx)return;
+    if(!sumergido||!master||!actx)return;
     var c=actx, t0=c.currentTime+.01;
     var bp=c.createBiquadFilter(); bp.type='bandpass'; bp.Q.value=1.2;
     var f0=900+Math.random()*700;
